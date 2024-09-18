@@ -38,6 +38,9 @@ llm = ChatGroq(
 )
 embeddings = HuggingFaceEmbeddings()
 
+# Get the subscription key from environment variables
+SUBSCRIPTION_KEY = os.environ.get('SUBSCRIPTION_KEY')
+
 # Define your Query model
 class Query(BaseModel):
     text: str
@@ -165,6 +168,30 @@ async def agent_endpoint(query: Query):
     response = f"Based on content similarity, I'll use the {tool_to_use}.\n"
     response += agent.run(f"Use the {tool_to_use} to answer: {query.text}")
     return {"response": response}
+
+# Speech-to-text endpoint
+@app.post("/api/speech-to-text")
+async def speech_to_text(file: UploadFile = File(...), language_code: str = Form(...)):
+    try:
+        content = await file.read()
+        headers = {
+            "API-Subscription-Key": SUBSCRIPTION_KEY,
+            "Content-Type": "audio/wav"
+        }
+        params = {
+            "language_code": language_code,
+            "model": "saarika:v1"
+        }
+        response = requests.post(
+            "https://api.sarvam.ai/speech-to-text",
+            headers=headers,
+            params=params,
+            data=content
+        )
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 # Healthcheck endpoint for Vercel
 @app.get("/api/healthcheck")

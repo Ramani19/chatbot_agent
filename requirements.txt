@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+httpx
+langchain-groq
+langchain
+pydantic
+scikit-learn
+numpy
+chromadb
+sentence-transformers
+pypdf
+duckduckgo-search
+python-multipart
+jinja2
