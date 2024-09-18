@@ -30,7 +30,6 @@ function addThinkingAnimation() {
     return thinkingDiv;
 }
 
-// ... (keep the existing code)
 
 async function sendMessage(message) {
     addMessage(message, true);
@@ -112,14 +111,10 @@ async function sendAudioToBackend(audioBlob, languageCode) {
     const formData = new FormData();
     formData.append('file', audioBlob, 'audio.wav');
     formData.append('language_code', languageCode);
-    formData.append('model', 'saarika:v1');
 
     try {
-        const response = await fetch('https://api.sarvam.ai/speech-to-text', {
+        const response = await fetch('/api/speech-to-text', {
             method: 'POST',
-            headers: {
-                'API-Subscription-Key': 'c587d363-845f-4aa3-9f56-ac2735609bcc'  // Replace with your actual API key
-            },
             body: formData
         });
 
