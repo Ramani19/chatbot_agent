@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Assistant</h1>
+            <div class="toggle-container">
+                <span class="toggle-label">RAG Chatbot</span>
+                <label class="switch">
+                    <input type="checkbox" id="modeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Agent</span>
+            </div>
+        </header>
+
+        <div id="chatContainer" class="chat-container"></div>
+
+        <div class="input-container">
+            <input type="text" id="questionInput" placeholder="Ask a question...">
+            <button id="submitBtn">Send</button>
+            <button id="voiceBtn">🎤</button>
+            <select id="languageSelect">
+                <option value="">Select Language</option>
+                <option value="hi-IN">Hindi</option>
+                <option value="bn-IN">Bengali</option>
+                <option value="kn-IN">Kannada</option>
+                <option value="ml-IN">Malayalam</option>
+                <option value="mr-IN">Marathi</option>
+                <option value="or-IN">Odia</option>
+                <option value="pa-IN">Punjabi</option>
+                <option value="ta-IN">Tamil</option>
+                <option value="te-IN">Telugu</option>
+                <option value="gu-IN">Gujarati</option>
+            </select>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
